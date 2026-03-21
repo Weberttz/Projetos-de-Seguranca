@@ -11,6 +11,7 @@ int main(int argc, char *argv[]){
     
     if(!verificarArgumentos(argc)){
         printf("Uso: ./programa arquivo chave\n");
+        return 0;
     }
     
     FILE *arquivo;
@@ -23,6 +24,7 @@ int main(int argc, char *argv[]){
 
     if(arquivo == NULL){
         printf("Erro ao abrir o arquivo!");
+        free(conteudo);
         return 0;
     }
 
@@ -41,12 +43,20 @@ int main(int argc, char *argv[]){
 
     fclose(arquivo);
 
-    arquivo = fopen(caminho, "w+");
+    arquivo = fopen(caminho, "wb");
 
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo de escrita");
+        free(conteudo);
+        return 0;
+    }
+    
     for(int i=0; i<k; i++)
         fputc(conteudo[i], arquivo);
 
     fclose(arquivo);
+
+    free(conteudo);
 
     printf("Arquivo criptografado/descriptografado com sucesso!");
 

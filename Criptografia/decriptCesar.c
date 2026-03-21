@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 //Criptografia utilizando Cifra de César
 
 int verificarArgumentos(int qntArgumentos){
@@ -14,6 +13,7 @@ int main(int argc, char *argv[]){
 
     if(!verificarArgumentos(argc)){
         printf("Uso: ./programa arquivo chave\n");
+        return 0;
     }
 
     FILE *arquivo;
@@ -56,6 +56,9 @@ int main(int argc, char *argv[]){
     fclose(arquivo);
 
     printf("Arquivo criptografado com sucesso!");
+
+    free(conteudo);
+    free(caminho);
 
     return 0;
 }

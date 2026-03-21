@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
 
     if(!verificarArgumentos(argc)){
         printf("Uso: ./programa arquivo chave\n");
+        return 0;
     }
 
     FILE *arquivo;
@@ -52,6 +53,9 @@ int main(int argc, char *argv[]){
     fclose(arquivo);
 
     printf("Arquivo criptografado com sucesso!");
+
+    free(conteudo);
+    free(caminho);
 
     return 0;
 }
